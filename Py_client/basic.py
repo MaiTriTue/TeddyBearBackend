@@ -4,13 +4,25 @@ from bs4 import BeautifulSoup
 from newspaper import Article
 
 
-endpoint = 'http://127.0.0.1:8000/teddy-bear-hot/'
+endpoint = 'http://127.0.0.1:8000/user/register/'
 
-page = requests.get(endpoint)
+bodyFormData = {
+    'username': 'duongvan',
+    'password': '123456789',
+    'last_name': 'duong',
+    'first_name': 'thi van',
+    'email': 'email@gmail.com',
+}
+
+page = requests.post(endpoint, data=bodyFormData)
+# page = requests.post(endpoint, data=bodyFormData, headers={
+#     'Content-Type': 'multipart/form-data;',
+# })
+# page = requests.get(endpoint)
 
 
-# print(page.text)
-print(page.json())
+print(page.text)
+# print(page.json())
 
 
 # # url = 'https://vnexpress.net/12-000-nguoi-do-ve-cua-lo-4092705.html'

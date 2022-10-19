@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "corsheaders",
     'drf_yasg',
     'rest_framework',
+    'oauth2_provider',
 ]
 
 MIDDLEWARE = [
@@ -138,6 +139,7 @@ CKEDITOR_UPLOAD_PATH = 'products/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'CustomUser.User'
 CORS_ALLOW_ALL_ORIGINS = True
+LOGIN_URL = '/admin/login/'
 CORS_ALLOW_METHODS = [
     "DELETE",
     "GET",
@@ -156,16 +158,38 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:3000',
 ]
 
+ALLOWED_HOSTS = ['*']
+
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
 
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',),
+
+    #  cau hinh su ly du lieu nhan dc
     'DEFAULT_PARSER_CLASSES': [
         'rest_framework.parsers.JSONParser',
+        'rest_framework.parsers.FormParser',
+        'rest_framework.parsers.MultiPartParser'
     ],
+}
+
+OAUTH2_PROVIDER = {
+    'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups'},
+    # 'OAUTH2_BACKEND_CLASS': 'oauth2_provider.oauth2_backends.JSONOAuthLibCore',
+}
+
+OAUTH2_INFO = {
+    'client_id': 'SPvT8KCJ38IlbZ4dPQD50ru9f5d7SfiBLzVhKgyW',
+    'client_secret': 'V2bJfe7TVLyeb1hCOlrIbYoT8HjmEOHiSTNitufWsDM9hKbwXfWGLXEf59HcawFjklQOIEnCuqEYa5oqjHBm43fhOMnAew6F5G1WxCNVdKdmMa32PfhCDGDxHHDW6FGK',
 }
 
 
 # super user:
 # username : admin
 # password: duongvan1204
+
+#  applicatiopn name: TeddyBearApp
+
+# user 2 : duongvan  123456789

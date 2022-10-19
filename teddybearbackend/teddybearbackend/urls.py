@@ -37,6 +37,7 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('TeddyBear.urls')),
+    path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     path('user/', include('CustomUser.urls')),
     re_path(r'^ckeditor/', include('ckeditor_uploader.urls')),
     re_path(r'^swagger(?P<format>\.json|\.yaml)$',

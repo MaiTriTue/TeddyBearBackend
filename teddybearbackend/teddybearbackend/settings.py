@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get(
 # DEBUG = True
 DEBUG = str(os.environ.get('DEBUG')) == '1'  # 1==True
 
-ALLOWED_HOSTS = ['.vercel.app', '.now.sh', '127.0.0.1']
+ALLOWED_HOSTS = ['.vercel.app', '.now.sh']
 # ALLOWED_HOSTS = []
 
 if not DEBUG:
@@ -191,7 +191,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:8000",
     'http://localhost:3000',
     'http://127.0.0.1:3000',
-    'https://teddy-bear-backend.vercel.app/',
+
 
 ]
 

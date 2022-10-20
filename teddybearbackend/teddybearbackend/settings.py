@@ -26,8 +26,6 @@ SECRET_KEY = os.environ.get(
     'SECRET_KEY', 'django-insecure-$z0ft$)mcl9p9tx%#47dz)*f3(+p4gr-t9u&z9!=jldpb9$d%(')
 # SECRET_KEY = 'django-insecure-$z0ft$)mcl9p9tx%#47dz)*f3(+p4gr-t9u&z9!=jldpb9$d%('
 
-# exception if SECRET_KEY not in os.environ
-# SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
@@ -193,6 +191,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:8000",
     'http://localhost:3000',
     'http://127.0.0.1:3000',
+    'https://teddy-bear-backend.vercel.app/',
 
 ]
 

@@ -649,7 +649,7 @@ def index(request):
     for data in datas:
         pass
     return render(request, template_name='index.html', context={
-        'name': datas
+        'name': "Django deploy vercel !!!"
     })
 
 # Create your views here.

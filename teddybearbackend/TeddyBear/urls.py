@@ -22,6 +22,6 @@ router.register('hop-qua', views.HopQuaViewSet, 'hop-qua')
 
 
 urlpatterns = [
-    # path('', views.index, name='index'),
-    path('', include(router.urls)),
+    path('', views.index, name='index'),
+    # path('', include(router.urls)),
 ]

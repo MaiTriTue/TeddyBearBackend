@@ -12,21 +12,33 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 import os
 from pathlib import Path
+import dj_database_url
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-$z0ft$)mcl9p9tx%#47dz)*f3(+p4gr-t9u&z9!=jldpb9$d%('
+SECRET_KEY = os.environ.get(
+    'SECRET_KEY', 'django-insecure-$z0ft$)mcl9p9tx%#47dz)*f3(+p4gr-t9u&z9!=jldpb9$d%(')
+# SECRET_KEY = 'django-insecure-$z0ft$)mcl9p9tx%#47dz)*f3(+p4gr-t9u&z9!=jldpb9$d%('
+
+# exception if SECRET_KEY not in os.environ
+# SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = str(os.environ.get('DEBUG')) == '1'  # 1==True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app', '.now.sh', '127.0.0.1']
+# ALLOWED_HOSTS = []
+
+if not DEBUG:
+
+    ALLOWED_HOSTS += [os.environ.get('ALLOWED_HOSTS')]
 
 
 # Application definition
@@ -85,15 +97,37 @@ WSGI_APPLICATION = 'teddybearbackend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'teddybeardb',
-        'USER': 'root',
-        'PASSWORD': 'Tue160489#',
-        'HOST': ''
+
+if os.environ['ENVIRONMENT'] == "PRODUCTION":
+    DATABASES = {'default': dj_database_url.config(
+        conn_max_age=600, ssl_require=True)}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': os.environ['ENGINE'],
+            'HOST': os.environ['DATABASE_HOST'],
+            'NAME': os.environ['DATABASE_NAME'],
+            'USER': os.environ['DATABASE_USER'],
+            'PASSWORD': os.environ['DATABASE_PASS'],
+            'PORT': os.environ['DATABASE_PORT'],
+
+        }
     }
-}
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'teddybeardb',
+#         'USER': 'root',
+#         'PASSWORD': 'Tue160489#',
+#         'HOST': ''
+#     }
+
+# }
+
+# ten du an csdl online : teddybearbackend
+# mật khẩu csdl online : Tue160489#@!
 
 
 # Password validation
@@ -159,11 +193,9 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:8000",
     'http://localhost:3000',
     'http://127.0.0.1:3000',
-    '.vercel.app',
-    '.now.sh',
+
 ]
 
-ALLOWED_HOSTS = ['.vercel.app', '.now.sh']
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',

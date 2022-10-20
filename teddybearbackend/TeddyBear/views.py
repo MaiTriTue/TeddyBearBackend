@@ -17,7 +17,7 @@ datas = [
         'color': 'no color',
         'size': 'no size',
         'material': 'no material',
-        'amount_sold': 82,
+        'amount_sold': 81,
         'price': 'LIÊN HỆ'
     },
     {
@@ -91,7 +91,7 @@ datas = [
         'name': 'Gối cổ chữ U hình thú',
         'image': 'https://scontent.fhan3-5.fna.fbcdn.net/v/t39.30808-6/300585281_3253091798294358_4613431842630728764_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=9ebGCs6AgAUAX-g13Lp&tn=6CPhYCWUAXTxwr8S&_nc_ht=scontent.fhan3-5.fna&oh=00_AT_DkYLfzcoQf2uMo6Dv0L4oQDEJ41lADCjvT_mRkMY3fA&oe=634EE4C3',
         'discription': 'Hàng cao cấp. Bên ngoài là lớp nhung siêu mềm mịn. Bên trong là 100% cao su non nên đàn hồi cực tốt, không lo bị xẹp. Đặc biệt là không bị nóng khi dùng. Gối được trang bị khoá kéo tiện dụng, dễ dàng kéo khoá ra để thay giặt vỏ. Đặc biệt là có tặng kèm bịt mắt hình thú xinh xắn',
-        'type': 'phu kien',
+        'type': 'goi bong',
         'color': 'no color',
         'size': 'no size',
         'material': 'no material',
@@ -231,7 +231,7 @@ datas = [
         'name': 'Gối ôm chó xương',
         'image': 'https://gaubongvip.com/data/Product/goi-om-cho-xuong-sieu-mem-2_1638022102.jpg',
         'discription': 'Thiết kế thuôn dài rất dễ ôm. Có thể sử dụng để ôm đi ngủ, gối đầu, tựa lưng, gác chân đều rất thích. Bên ngoài là chất nhung mềm mịn, bên trong là 100% bông trắng đàn hồi siêu sạch, an toàn cho mọi người',
-        'type': 'goi om',
+        'type': 'goi bong',
         'color': 'no color',
         'size': 'no size',
         'material': 'no material',
@@ -302,7 +302,7 @@ datas = [
         'name': 'Gối ôm Mèo hoàng thượng',
         'image': 'https://scontent.fhan3-5.fna.fbcdn.net/v/t39.30808-6/305077034_3264629690473902_3578217439783016202_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=YSuMQX9OJdMAX-nmBup&_nc_ht=scontent.fhan3-5.fna&oh=00_AT_P5gsXcmxqTJKk5eHh5YFMm9jZt0J9PAk5sPcKr-4G5Q&oe=635001AA',
         'discription': 'Dáng gấu nằm dài. Mặt vô cùng xinh xắn. Bên ngoài là chất nhung siêu mềm mịn. Bên trong là 100% bông trắng đàn hồi nên rất căng mềm, ôm cực thích',
-        'type': 'goi om',
+        'type': 'goi bong',
         'color': 'no color',
         'size': 'no size',
         'material': 'no material',
@@ -313,7 +313,7 @@ datas = [
         'name': 'Gối ôm Bò sữa',
         'image': 'https://scontent.fhan4-3.fna.fbcdn.net/v/t39.30808-6/305302000_3269763499960521_5524475521647370581_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=PNC2LYtBDI8AX_xOxJa&_nc_ht=scontent.fhan4-3.fna&oh=00_AT-iGCOsKkC_-7D63HL7eS9ZH44KUQC3vUZzkUdjEIf0Kg&oe=63503140',
         'discription': 'Dáng gấu nằm dài. Mặt vô cùng xinh xắn. Bên ngoài là chất nhung siêu mềm mịn. Bên trong là 100% bông trắng đàn hồi nên rất căng mềm, ôm cực thích',
-        'type': 'goi om',
+        'type': 'goi bong',
         'color': 'no color',
         'size': 'no size',
         'material': 'no material',
@@ -513,6 +513,7 @@ datas = [
 
 ]
 
+
 # phan trang
 
 
@@ -617,30 +618,31 @@ class GiftBoxHotViewSet(viewsets.ModelViewSet):
     serializer_class = ProductSerialize
     pagination_class = PageSize10Pagiration
 
-    # def index(request):
-    #     for data in datas:
-    #         if data['type'] == 'gau bong':
-    #             c = Category.objects.get(name='Gấu Bông')
-    #         elif data['type'] == 'thu bong':
-    #             c = Category.objects.get(name='Thú Bông')
-    #         elif data['type'] == 'hoat hinh':
-    #             c = Category.objects.get(name='Gấu Bông Hoạt Hình')
-    #         elif data['type'] == 'goi om':
-    #             c = Category.objects.get(name='Gối Bông')
-    #         elif data['type'] == 'bup be':
-    #             c = Category.objects.get(name='Búp Bê')
-    #         elif data['type'] == 'hoa':
-    #             c = Category.objects.get(name='Hoa')
-    #         elif data['type'] == 'phu kien':
-    #             c = Category.objects.get(name='Phụ Kiện')
-    #         else:
-    #             c = ''
 
-    #         Products.objects.get_or_create(name=data['name'], image=data['image'], discription=data['discription'],
-    #                                        type=data['type'], price=data['price'], amount_sold=data['amount_sold'], category=c)
-    #     return render(request, template_name='index.html', context={
-    #         'name': 'tạo database xong'
-    #     })
+# def index(request):
+#     for data in datas:
+#         if data['type'] == 'gau bong':
+#             c = Category.objects.get(name='Gấu Bông')
+#         elif data['type'] == 'thu bong':
+#             c = Category.objects.get(name='Thú Bông')
+#         elif data['type'] == 'hoat hinh':
+#             c = Category.objects.get(name='Gấu Bông Hoạt Hình')
+#         elif data['type'] == 'goi bong':
+#             c = Category.objects.get(name='Gối Bông')
+#         elif data['type'] == 'bup be':
+#             c = Category.objects.get(name='Búp Bê')
+#         elif data['type'] == 'hoa':
+#             c = Category.objects.get(name='Hoa')
+#         elif data['type'] == 'phu kien':
+#             c = Category.objects.get(name='Gối Bông')
+#         else:
+#             c = ''
+
+#         Products.objects.get_or_create(name=data['name'], image=data['image'], discription=data['discription'],
+#                                        type=data['type'], price=data['price'], amount_sold=data['amount_sold'], category=c)
+#     return render(request, template_name='index.html', context={
+#         'name': 'tạo database xong'
+#     })
 
 
 def index(request):
